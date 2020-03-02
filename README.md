@@ -68,7 +68,15 @@ Open a command prompt in the directory with the Makefile.
 
 ## Flashing with the Bootloader
 
-Simply plug in your CANable with the BOOT jumper enabled (or depress the boot button on the CANable Pro while plugging in). Next, type `make flash` and your CANable will be updated to the latest firwmare. Unplug/replug the device after moving the boot jumper back, and your CANable will be up and running.
+- Set the Boot jumper away from the screw terminals.
+- Plug in the CanAble.
+- Open STM32CubeProgrammer.
+- Select "USB"
+- Refresh and select for example Port: "USB1".
+- Connect.
+- Flash the .hex file.
+- Reset the Boot jumper to the position closest to the screw terminals.
+- Disconnect and re-connect the CanAble.
 
 ## Debugging
 
