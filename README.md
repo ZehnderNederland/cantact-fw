@@ -31,15 +31,40 @@ This firmware currently does not provide any ACK/NACK feedback for serial comman
 
 ## Building
 
-Firmware builds with GCC. Specifically, you will need gcc-arm-none-eabi, which
-is packaged for Windows, OS X, and Linux on
-[Launchpad](https://launchpad.net/gcc-arm-embedded/+download). Download for your
-system and add the `bin` folder to your PATH.
+### Requirements
 
-Your Linux distribution may also have a prebuilt package for `arm-none-eabi-gcc`, check your distro's repositories to see if a build exists.
+#### Mingw-w64
 
-- If you have a CANable device, compile with `make INTERNAL_OSCILLATOR=1`.
-- If you have a CANtact device, you can compile using `make`. 
+To compile you will need mingw-w64:
+http://mingw-w64.yaxm.org/doku.php/download - Use the MingW-W64-builds
+-	Specify setup settings
+  - Version -> newest (8.1.0)
+  - Architecture -> x86_64
+  - Threads -> posix
+  - Exception -> she
+  - Build revision -> 0
+-	Install in: “C:\mingw-w64”, because mingw does not like spaces in its path (so you can’t put it in “Program Files).
+-	Add the “bin” folder of “C:\mingw-w64” to the PATH variable.
+  - Control panel -> System -> Advanced system settings
+  - Advanced -> Environment Variables
+  - User variables for <account> -> Path
+  - “New”
+  - Fill in the path to the ”bin” folder, most likely: “C:\mingw-w64\mingw64\bin”.
+
+
+#### gcc-arm-none-eabi (cross compiler for stm32)
+
+https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm - Use gcc-arm-none-eabi-8-2019-q3-update-win32-sha2.exe (or the latest equivalent).
+
+-	Same as Mingw-W64, no spaces in the installation allowed. So put it in “C:/arm-none-eabi-gcc”
+-	On the last installer screen enable “Add path to environment variable”.
+
+### Build commands
+
+Open a command prompt in the directory with the Makefile.
+
+- If you have a CANable device, compile with `mingw32-make INTERNAL_OSCILLATOR=1`.
+- If you have a CANtact device, you can compile using `mingw32-make`. 
 
 ## Flashing with the Bootloader
 
@@ -57,6 +82,8 @@ With OpenOCD running, arm-none-eabi-gdb can be used to load code and debug.
 
 ## Contributors
 
+This code was forked from the open source project: https://github.com/normaldotcom/cantact-fw
+Contributors to this were:
 - [Ethan Zonca](https://github.com/normaldotcom) - Makefile fixes and code size optimization, updates for CANable
 - [onejope](https://github.com/onejope) - Fixes to extended ID handling
 - Phil Wise - Added dfu-util compatibility to Makefile

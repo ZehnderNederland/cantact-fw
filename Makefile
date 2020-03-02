@@ -60,7 +60,7 @@ AR = arm-none-eabi-ar
 RANLIB = arm-none-eabi-ranlib
 SIZE = arm-none-eabi-size
 OBJCOPY = arm-none-eabi-objcopy
-MKDIR = mkdir -p
+MKDIR = mkdir
 #######################################
 
 # core and CPU type for Cortex M0
@@ -70,17 +70,17 @@ CORE = CORE_M0
 CPU = cortex-m0
 
 # where to build STM32Cube
-CUBELIB_BUILD_DIR = $(BUILD_DIR)/STM32Cube
+CUBELIB_BUILD_DIR = $(BUILD_DIR)\STM32Cube
 
 # various paths within the STmicro library
-CMSIS_PATH = Drivers/CMSIS
-CMSIS_DEVICE_PATH = $(CMSIS_PATH)/Device/ST/STM32F0xx
-DRIVER_PATH = Drivers/STM32F0xx_HAL_Driver
+CMSIS_PATH = Drivers\CMSIS
+CMSIS_DEVICE_PATH = $(CMSIS_PATH)\Device\ST\STM32F0xx
+DRIVER_PATH = Drivers\STM32F0xx_HAL_Driver
 
 # includes for gcc
-INCLUDES = -I$(CMSIS_PATH)/Include
-INCLUDES += -I$(CMSIS_DEVICE_PATH)/Include
-INCLUDES += -I$(DRIVER_PATH)/Inc
+INCLUDES = -I$(CMSIS_PATH)\Include
+INCLUDES += -I$(CMSIS_DEVICE_PATH)\Include
+INCLUDES += -I$(DRIVER_PATH)\Inc
 INCLUDES += -Iinc
 INCLUDES += $(USB_INCLUDES)
 INCLUDES += $(USER_INCLUDES)
@@ -130,7 +130,7 @@ $(CUBELIB_BUILD_DIR):
 # build the USB library
 #######################################
 USB_MIDDLEWARE_PATH = ./Middlewares/ST/STM32_USB_Device_Library/
-USB_BUILD_DIR = $(BUILD_DIR)/usb
+USB_BUILD_DIR = $(BUILD_DIR)\usb
 USB_SOURCES += usbd_ctlreq.c usbd_ioreq.c usbd_core.c usbd_cdc.c
 # list of usb library objects
 USB_OBJECTS += $(addprefix $(USB_BUILD_DIR)/,$(notdir $(USB_SOURCES:.c=.o)))
