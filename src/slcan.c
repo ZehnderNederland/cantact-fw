@@ -174,7 +174,8 @@ int8_t slcan_parse_str(uint8_t *buf, uint8_t len)
 
     } else if (buf[0] == 'v' || buf[0] == 'V') {
         // Report firmware version and remote
-        char* fw_id = GIT_VERSION " " GIT_REMOTE "\r";
+        // Added a "VZehnder " to distinguish this version from the original CanAble version.
+        char* fw_id = "VZehnder " GIT_VERSION " " GIT_REMOTE "\r";
         CDC_Transmit_FS((uint8_t*)fw_id, strlen(fw_id));
         return 0;
 
