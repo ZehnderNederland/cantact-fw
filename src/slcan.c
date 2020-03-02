@@ -25,7 +25,7 @@ int8_t slcan_parse_frame(uint8_t *buf, CanRxMsgTypeDef *frame)
     if (frame->RTR == CAN_RTR_DATA)
     {
         buf[i] = 't';
-    } else if (frame->RTR == CAN_RTR_REMOTE) {
+    } else if (frame->RTR == 1u) {
         buf[i] = 'r';
     }
 
@@ -180,11 +180,11 @@ int8_t slcan_parse_str(uint8_t *buf, uint8_t len)
 
     } else if (buf[0] == 't' || buf[0] == 'T') {
         // Transmit data frame command
-        frame.RTR = CAN_RTR_DATA;
+        frame.RTR = CAN_RTR_DATA; // TODO: Check if this is indeed ok. Or if it needs to be "1u"
 
     } else if (buf[0] == 'r' || buf[0] == 'R') {
         // Transmit remote frame command
-        frame.RTR = CAN_RTR_REMOTE;
+        frame.RTR = CAN_RTR_REMOTE; // TODO: Check if this is indeed ok. Or if it needs to be "1u"
 
     } else {
         // Error, unknown command
